@@ -85,8 +85,8 @@ public class HuffProcessor {
 			}
 			
 			if(bits == 0) {
-				HuffNode left = readTreeHeader(in).myLeft;
-				HuffNode right = readTreeHeader(in).myRight;
+				HuffNode left = readTreeHeader(in);
+				HuffNode right = readTreeHeader(in);
 				return new HuffNode(0, 0, left, right);
 			}
 			
@@ -120,7 +120,7 @@ public class HuffProcessor {
 						break;
 					}
 					else {
-						current.myValue = in.readBits(BITS_PER_WORD);
+						out.writeBits(BITS_PER_WORD, current.myValue);
 						current = root;
 					}
 				}
