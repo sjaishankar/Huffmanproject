@@ -65,12 +65,19 @@ public class HuffProcessor {
 	private int[] readForCounts(BitInputStream in) {
 		int[] counts = new int[ALPH_SIZE+1];
 		counts[PSEUDO_EOF] = 1;
-		
-		for(int i = 0; i < counts.length; i++) {
+		while(true) {
+			int bits = in.readBits(BITS_PER_WORD);
+			if(bits == -1) break;
+			if(bits == PSEUDO_EOF) {
+				counts[PSEUDO_EOF] = 1;
+			}
+			counts[bits]++;
+		}
+		/*for(int i = 0; i < counts.length; i++) {
 			int bits = in.readBits(BITS_PER_WORD);
 			if(bits == -1) break;
 			counts[bits]++;
-		}
+		}*/
 		
 		return counts;
 	}
