@@ -130,8 +130,7 @@ public class HuffProcessor {
 			if(bits == -1) break;
 			
 			String bitseq = codings[bits];
-			if(bitseq == null) break;
-			else {
+			if(bitseq != null) {
 				out.writeBits(bitseq.length(), Integer.parseInt(bitseq, 2));
 			}
 		}
