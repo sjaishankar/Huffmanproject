@@ -73,12 +73,6 @@ public class HuffProcessor {
 			}
 			counts[bits]++;
 		}
-		/*for(int i = 0; i < counts.length; i++) {
-			int bits = in.readBits(BITS_PER_WORD);
-			if(bits == -1) break;
-			counts[bits]++;
-		}*/
-		
 		return counts;
 	}
 	
@@ -173,7 +167,7 @@ public class HuffProcessor {
 		out.close(); */
 	}
 	
-	public HuffNode readTreeHeader(BitInputStream in) {
+	private HuffNode readTreeHeader(BitInputStream in) {
 		while(true) {
 			int bits = in.readBits(1);
 			
@@ -194,7 +188,7 @@ public class HuffProcessor {
 		}
 	}
 	
-	public void readCompressedBits(HuffNode root, BitInputStream in, BitOutputStream out) {
+	private void readCompressedBits(HuffNode root, BitInputStream in, BitOutputStream out) {
 		HuffNode current = root;
 		
 		while(true) {
